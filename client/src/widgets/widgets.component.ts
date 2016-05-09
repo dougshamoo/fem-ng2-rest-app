@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {WidgetsService} from './widgets.service.ts';
+import {RouteParams} from 'angular2/router';
 
 @Component({
   selector: 'widgets',
@@ -8,7 +9,11 @@ import {WidgetsService} from './widgets.service.ts';
 })
 export class Widgets {
   widgets: any[];
-  constructor(_widgetsService: WidgetsService) {
+  activeWidget = {};
+  constructor(_widgetsService: WidgetsService, private _params: RouteParams) {
     this.widgets = _widgetsService.widgets;
+    this.activeWidget = this.widgets.find(widget =>
+      widget.id === parseInt(this._params.get('id'))
+    );
   }
 }
