@@ -3,7 +3,7 @@ import {WidgetsService} from './widgets.service.ts';
 
 @Component({
   selector: 'widgets',
-  templateUrl: 'widgets.component.html',
+  template: require('./widgets.component.html'),
   providers: [WidgetsService]
 })
 export class Widgets {
