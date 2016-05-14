@@ -11,14 +11,14 @@ import {Demo} from './demo/demo.component';
 })
 @RouteConfig([
   {path: '/items', name: 'Items', component: Items, useAsDefault: true},
-  {path: '/widgets/:id', name: 'Widgets', component: Widgets},
+  {path: '/widgets', name: 'Widgets', component: Widgets},
   {path: '/demo/...', name: 'Demo', component: Demo}
 ])
 export class App {
   constructor(private _router: Router) {};
   links = {
     items: ['Items'],
-    widgets: ['Widgets', {id: 1}],
+    widgets: ['Widgets'],
     demo: ['Demo']
   }
   navigateToDemo() {

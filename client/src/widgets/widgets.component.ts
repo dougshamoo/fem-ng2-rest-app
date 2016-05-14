@@ -1,19 +1,38 @@
 import {Component} from 'angular2/core';
-import {WidgetsService} from './widgets.service.ts';
-import {RouteParams} from 'angular2/router';
+import {WidgetsList} from './widgets-list.component';
+import {WidgetDetail} from './widget-detail.component';
+import {Widget, WidgetsService} from './widgets.service.ts';
 
 @Component({
   selector: 'widgets',
-  template: require('./widgets.component.html'),
-  providers: [WidgetsService]
+  template: `
+  <div class="mdl-grid widgets">
+    <div class="mdl-cell mdl-cell--6-col">
+      <widgets-list [widgets]="widgets"
+        (selected)="selectWidget($event)">
+      </widgets-list>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <widget-detail [widget]="selectedWidget"></widget-detail>
+    </div>
+  </div>
+  `,
+  styles: [`
+    .widgets {
+      padding: 20px;
+    }
+  `],
+  providers: [WidgetsService],
+  directives: [WidgetsList, WidgetDetail]
 })
 export class Widgets {
-  widgets: any[];
-  activeWidget = {};
-  constructor(_widgetsService: WidgetsService, private _params: RouteParams) {
+  widgets: Widget[];
+  selectedWidget: Widget;
+  constructor(_widgetsService: WidgetsService) {
     this.widgets = _widgetsService.widgets;
-    this.activeWidget = this.widgets.find(widget =>
-      widget.id === parseInt(this._params.get('id'))
-    );
   }
+  selectWidget(widget: Widget) {
+    this.selectedWidget = widget;
+  }
+
 }

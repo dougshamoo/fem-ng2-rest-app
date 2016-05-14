@@ -1,5 +1,11 @@
 import {Injectable} from 'angular2/core';
 
+export interface Widget {
+  id: number,
+  name: string,
+  description: string
+}
+
 @Injectable()
 export class WidgetsService {
   // widgets = [
