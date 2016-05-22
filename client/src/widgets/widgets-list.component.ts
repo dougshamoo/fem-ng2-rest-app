@@ -9,12 +9,14 @@ import {highlight} from '../shared/highlight.directive';
       class="item-card mdl-card mdl-shadow--2dp"
       (click)="select(widget)"
       highlight [pos]="widget.id">
-      <div *ngIf="selectedWidget === widget" class="mdl-card__title"
-        style="background-color:red;">
-        <h2 class="mdl-card__title-text">{{widget.name}}</h2>
-      </div>
-      <div *ngIf="selectedWidget !== widget" class="mdl-card__title">
-        <h2 class="mdl-card__title-text">{{widget.name}}</h2>
+      <div class="mdl-card__title">
+        <h2 *ngIf="selectedWidget === widget" style="font-weight:bold;"
+          class="mdl-card__title-text">
+          {{widget.name}}
+        </h2>
+        <h2 *ngIf="selectedWidget !== widget" class="mdl-card__title-text">
+          {{widget.name}}
+        </h2>
       </div>
       <div class="mdl-card__supporting-text">
         {{widget.description}}

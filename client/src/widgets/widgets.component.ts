@@ -13,7 +13,10 @@ import {Widget, WidgetsService} from './widgets.service.ts';
       </widgets-list>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
-      <widget-detail [widget]="selectedWidget"></widget-detail>
+      <widget-detail [widget]="selectedWidget"
+        (saved)="saveWidget($event)"
+        (cancelled)="cancelWidget($event)">
+      </widget-detail>
     </div>
   </div>
   `,
@@ -33,6 +36,12 @@ export class Widgets {
   }
   selectWidget(widget: Widget) {
     this.selectedWidget = widget;
+  }
+  saveWidget(widget: Widget) {
+    console.log(widget.name, 'has been saved.');
+  }
+  cancelWidget() {
+    console.log("Cancelled.");
   }
 
 }
